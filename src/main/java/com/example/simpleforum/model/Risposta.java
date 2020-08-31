@@ -1,5 +1,6 @@
 package com.example.simpleforum.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -19,9 +20,11 @@ public class Risposta {
 
     @ManyToOne
     @JoinColumn(name = "id_utente")
+    //@JsonManagedReference
     private Utente utente;
 
     @ManyToOne
     @JoinColumn(name = "id_post")
+    //@JsonManagedReference
     private Post post;
 }

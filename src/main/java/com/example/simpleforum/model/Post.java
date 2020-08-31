@@ -1,7 +1,10 @@
 package com.example.simpleforum.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,13 +32,16 @@ public class Post {
 
     @ManyToOne
     @JoinColumn(name = "id_utente")
+    //@JsonManagedReference
     private Utente utente;
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
+    //@JsonManagedReference
     private Categoria categoria;
 
     @OneToMany(mappedBy = "post")
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     private List<Risposta> rispostaList = new ArrayList<>();
 }

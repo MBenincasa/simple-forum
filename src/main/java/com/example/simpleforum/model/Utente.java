@@ -1,6 +1,7 @@
 package com.example.simpleforum.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -33,10 +34,12 @@ public class Utente {
     private String tipo;
 
     @OneToMany(mappedBy = "utente")
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     private List<Post> postList = new ArrayList<>();
 
     @OneToMany(mappedBy = "utente")
-    @JsonBackReference
+    //@JsonBackReference
+    @JsonIgnore
     private List<Risposta> rispostaList = new ArrayList<>();
 }
