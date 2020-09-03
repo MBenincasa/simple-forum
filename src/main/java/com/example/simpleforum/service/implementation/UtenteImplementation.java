@@ -28,13 +28,13 @@ public class UtenteImplementation implements UtenteInterface {
             Utente u = utenteRepo.findByEmailAndPassword(utente.getEmail(), utente.getPassword());
 
             if (null == u) {
-                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente: " + utente.getEmail() + " non presente.");
+                throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente: " + utente.getEmail() + " non presente o password errata.");
             }
 
             log.info("INFO - Utente: " + u.getEmail() + " ha effettuato il login.");
             return u;
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente: " + utente.getEmail() + " non presente.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente: " + utente.getEmail() + " non presente o password errata.");
         }
     }
 
@@ -64,6 +64,10 @@ public class UtenteImplementation implements UtenteInterface {
 
     @Override
     public Optional<Utente> findById(int id) {
+        if(!utenteRepo.findById(id).isPresent()){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente non presente.");
+        }
+
         log.info("INFO - Sono state stampate le informazioni riguardo l'utente id: " + id);
         return utenteRepo.findById(id);
     }
@@ -76,14 +80,17 @@ public class UtenteImplementation implements UtenteInterface {
 
     @Override
     public Utente updateUser(Utente utente) {
-        if (utenteRepo.findById(utente.getId()).isPresent()) {
-            utente.setId(utente.getId());
-            utente.setEmail(utente.getEmail());
-            utente.setPassword(utente.getPassword());
-            utente.setCognome(utente.getCognome());
-            utente.setNome(utente.getNome());
-            utente.setTipo(utente.getTipo());
+        if (!utenteRepo.findById(utente.getId()).isPresent()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore  con la categoria id: " + utente.getId());
         }
+
+        utente.setId(utente.getId());
+        utente.setEmail(utente.getEmail());
+        utente.setPassword(utente.getPassword());
+        utente.setCognome(utente.getCognome());
+        utente.setNome(utente.getNome());
+        utente.setTipo(utente.getTipo());
+
         log.info("INFO - E' stato eseguito un aggiornamento dei campi all'utente id: " + utente.getId());
         return utenteRepo.save(utente);
     }

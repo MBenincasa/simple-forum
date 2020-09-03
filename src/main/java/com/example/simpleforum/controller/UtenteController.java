@@ -61,7 +61,6 @@ public class UtenteController {
         }
 
         utenteInterface.deleteUser(id);
-
         return ResponseEntity.ok().build();
     }
 }
