@@ -7,8 +7,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
@@ -28,7 +28,7 @@ public class Post {
     private String testo;
 
     @Column(name = "data", nullable = false)
-    private Date data;
+    private LocalDateTime data;
 
     @ManyToOne
     @JoinColumn(name = "id_utente")

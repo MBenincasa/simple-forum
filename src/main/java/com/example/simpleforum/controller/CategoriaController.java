@@ -17,20 +17,20 @@ public class CategoriaController {
     private CategoriaInterface categoriaInterface;
 
     @PostMapping("/crea")
-    public ResponseEntity<Categoria> creaCategoria(@RequestBody Categoria categoria){
+    public ResponseEntity<Categoria> creaCategoria(@RequestBody Categoria categoria) {
         return ResponseEntity.ok(categoriaInterface.creaCategoria(categoria));
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Categoria>> stampaTutteCategorie(){
+    public ResponseEntity<List<Categoria>> stampaTutteCategorie() {
         return ResponseEntity.ok(categoriaInterface.findAllCat());
     }
 
     @GetMapping("/get-{id}")
-    public ResponseEntity<Categoria> stampaCategoriaPerId(@PathVariable Integer id){
+    public ResponseEntity<Categoria> stampaCategoriaPerId(@PathVariable Integer id) {
         Optional<Categoria> categoria = categoriaInterface.findCatById(id);
 
-        if(!categoria.isPresent()){
+        if (!categoria.isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -38,19 +38,17 @@ public class CategoriaController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Categoria> aggiornaCategoria(@RequestBody Categoria categoria){
-        if(!categoriaInterface.findCatById(categoria.getId()).isPresent()){
+    public ResponseEntity<Categoria> aggiornaCategoria(@RequestBody Categoria categoria) {
+        if (!categoriaInterface.findCatById(categoria.getId()).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
-        return  ResponseEntity.ok(categoriaInterface.updateCat(categoria));
+        return ResponseEntity.ok(categoriaInterface.updateCat(categoria));
     }
 
     @DeleteMapping("delete-{id}")
-    public ResponseEntity eliminaCategoria(@PathVariable Integer id){
-        Optional<Categoria> categoria = categoriaInterface.findCatById(id);
-
-        if(!categoria.isPresent()){
+    public ResponseEntity eliminaCategoria(@PathVariable Integer id) {
+        if (!categoriaInterface.findCatById(id).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 

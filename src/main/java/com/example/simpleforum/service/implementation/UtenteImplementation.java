@@ -64,7 +64,7 @@ public class UtenteImplementation implements UtenteInterface {
 
     @Override
     public Optional<Utente> findById(int id) {
-        if(!utenteRepo.findById(id).isPresent()){
+        if (!utenteRepo.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente non presente.");
         }
 
@@ -80,8 +80,8 @@ public class UtenteImplementation implements UtenteInterface {
 
     @Override
     public Utente updateUser(Utente utente) {
-        if (!utenteRepo.findById(utente.getId()).isPresent()) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore  con la categoria id: " + utente.getId());
+        if (!utenteRepo.findById(utente.getId()).isPresent() || !checkCredential(utente, true)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore con la categoria id: " + utente.getId());
         }
 
         utente.setId(utente.getId());

@@ -21,7 +21,7 @@ public class CategoriaImplementation implements CategoriaInterface {
 
     @Override
     public Categoria creaCategoria(Categoria categoria) {
-        if(null == categoria.getTitolo() || categoria.getTitolo().isEmpty()){
+        if (!checkDataCat(categoria)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore nella Categoria. Il titolo è vuoto o nullo.");
         }
 
@@ -37,7 +37,7 @@ public class CategoriaImplementation implements CategoriaInterface {
 
     @Override
     public Optional<Categoria> findCatById(int id) {
-        if(!categoriaRepo.findById(id).isPresent()){
+        if (!categoriaRepo.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Categoria non trovata.");
         }
 
@@ -47,7 +47,7 @@ public class CategoriaImplementation implements CategoriaInterface {
 
     @Override
     public Categoria updateCat(Categoria categoria) {
-        if(!categoriaRepo.findById(categoria.getId()).isPresent()){
+        if (!categoriaRepo.findById(categoria.getId()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore  con la categoria id: " + categoria.getId());
         }
 
@@ -62,5 +62,9 @@ public class CategoriaImplementation implements CategoriaInterface {
     public void deleteCat(int id) {
         log.info("INFO - E' stata eliminata la categoria con id: " + id);
         categoriaRepo.deleteById(id);
+    }
+
+    private boolean checkDataCat(Categoria categoria) {
+        return null != categoria.getTitolo() && !categoria.getTitolo().isEmpty();
     }
 }

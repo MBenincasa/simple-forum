@@ -28,15 +28,15 @@ public class UtenteController {
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Utente>> stampaTuttiUtenti(){
+    public ResponseEntity<List<Utente>> stampaTuttiUtenti() {
         return ResponseEntity.ok(utenteInterface.findAllUsers());
     }
 
     @GetMapping("/get-{id}")
-    public ResponseEntity<Utente> stampaUtentePerId(@PathVariable Integer id){
+    public ResponseEntity<Utente> stampaUtentePerId(@PathVariable Integer id) {
         Optional<Utente> utente = utenteInterface.findById(id);
 
-        if(!utente.isPresent()){
+        if (!utente.isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -44,8 +44,8 @@ public class UtenteController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Utente> aggiornaUtente(@RequestBody Utente utente){
-        if(!utenteInterface.findById(utente.getId()).isPresent()){
+    public ResponseEntity<Utente> aggiornaUtente(@RequestBody Utente utente) {
+        if (!utenteInterface.findById(utente.getId()).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -53,10 +53,8 @@ public class UtenteController {
     }
 
     @DeleteMapping("/delete-{id}")
-    public ResponseEntity eliminaUtente(@PathVariable Integer id){
-        Optional<Utente> utente = utenteInterface.findById(id);
-
-        if(!utente.isPresent()){
+    public ResponseEntity eliminaUtente(@PathVariable Integer id) {
+        if (!utenteInterface.findById(id).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
