@@ -63,7 +63,7 @@ public class UtenteImplementation implements UtenteInterface {
     }
 
     @Override
-    public Optional<Utente> findById(int id) {
+    public Optional<Utente> findUserById(int id) {
         if (!utenteRepo.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Utente non presente.");
         }

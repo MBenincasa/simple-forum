@@ -28,7 +28,7 @@ public class PostImplementation implements PostInterface {
     @Override
     public Post creaPost(Post post) {
         if (!checkDataPost(post)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore nei dati del post id: " + post.getId());
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore nei dati del post.");
         }
 
         log.info("INFO - E' stato creato un nuovo post titolo: " + post.getTitolo());
@@ -42,7 +42,7 @@ public class PostImplementation implements PostInterface {
     }
 
     @Override
-    public Optional<Post> findById(int id) {
+    public Optional<Post> findPostById(int id) {
         if (!postRepo.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore nella richiesta del post id: " + id);
         }

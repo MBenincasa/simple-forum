@@ -18,20 +18,20 @@ public class PostController {
     private PostInterface postInterface;
 
     @PostMapping("/crea")
-    public ResponseEntity<Post> creaPost(@RequestBody Post post){
+    public ResponseEntity<Post> creaPost(@RequestBody Post post) {
         return ResponseEntity.ok(postInterface.creaPost(post));
     }
 
     @GetMapping("/getAll")
-    public ResponseEntity<List<Post>> stampaTuttiPost(){
+    public ResponseEntity<List<Post>> stampaTuttiPost() {
         return ResponseEntity.ok(postInterface.findAllPosts());
     }
 
     @GetMapping("/get-{id}")
-    public ResponseEntity<Post> stampaPostPerId(@PathVariable Integer id){
-        Optional<Post> post = postInterface.findById(id);
+    public ResponseEntity<Post> stampaPostPerId(@PathVariable Integer id) {
+        Optional<Post> post = postInterface.findPostById(id);
 
-        if(!post.isPresent()){
+        if (!post.isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -39,8 +39,8 @@ public class PostController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Post> aggiornaPost(@RequestBody Post post){
-        if(!postInterface.findById(post.getId()).isPresent()){
+    public ResponseEntity<Post> aggiornaPost(@RequestBody Post post) {
+        if (!postInterface.findPostById(post.getId()).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -48,8 +48,8 @@ public class PostController {
     }
 
     @DeleteMapping("/delete-{id}")
-    public ResponseEntity eliminaPost(@PathVariable Integer id){
-        if(!postInterface.findById(id).isPresent()){
+    public ResponseEntity eliminaPost(@PathVariable Integer id) {
+        if (!postInterface.findPostById(id).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 

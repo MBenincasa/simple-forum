@@ -10,7 +10,7 @@ public interface PostInterface {
 
     List<Post> findAllPosts();
 
-    Optional<Post> findById(int id);
+    Optional<Post> findPostById(int id);
 
     Post updatePost(Post post);
 

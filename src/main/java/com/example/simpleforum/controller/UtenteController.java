@@ -3,7 +3,6 @@ package com.example.simpleforum.controller;
 import com.example.simpleforum.model.Utente;
 import com.example.simpleforum.service.interfaces.UtenteInterface;
 import lombok.AllArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +33,7 @@ public class UtenteController {
 
     @GetMapping("/get-{id}")
     public ResponseEntity<Utente> stampaUtentePerId(@PathVariable Integer id) {
-        Optional<Utente> utente = utenteInterface.findById(id);
+        Optional<Utente> utente = utenteInterface.findUserById(id);
 
         if (!utente.isPresent()) {
             ResponseEntity.badRequest().build();
@@ -45,7 +44,7 @@ public class UtenteController {
 
     @PutMapping("/update")
     public ResponseEntity<Utente> aggiornaUtente(@RequestBody Utente utente) {
-        if (!utenteInterface.findById(utente.getId()).isPresent()) {
+        if (!utenteInterface.findUserById(utente.getId()).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 
@@ -54,7 +53,7 @@ public class UtenteController {
 
     @DeleteMapping("/delete-{id}")
     public ResponseEntity eliminaUtente(@PathVariable Integer id) {
-        if (!utenteInterface.findById(id).isPresent()) {
+        if (!utenteInterface.findUserById(id).isPresent()) {
             ResponseEntity.badRequest().build();
         }
 

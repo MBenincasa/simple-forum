@@ -12,7 +12,7 @@ public interface UtenteInterface {
 
     List<Utente> findAllUsers();
 
-    Optional<Utente> findById(int id);
+    Optional<Utente> findUserById(int id);
 
     void deleteUser(int id);
 

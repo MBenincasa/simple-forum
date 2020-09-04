@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -17,6 +18,9 @@ public class Risposta {
 
     @Column(name = "testo", nullable = false)
     private String testo;
+
+    @Column(name = "data", nullable = false)
+    private LocalDateTime data;
 
     @ManyToOne
     @JoinColumn(name = "id_utente")
