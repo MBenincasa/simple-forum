@@ -21,7 +21,7 @@ public class Categoria {
     @Column(name = "titolo", nullable = false)
     private String titolo;
 
-    @OneToMany(mappedBy = "utente")
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     //@JsonBackReference
     @JsonIgnore
     private List<Post> postList = new ArrayList<>();

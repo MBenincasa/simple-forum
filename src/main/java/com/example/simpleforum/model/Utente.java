@@ -33,12 +33,12 @@ public class Utente {
     @Column(name = "tipo", nullable = false)
     private String tipo;
 
-    @OneToMany(mappedBy = "utente")
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     //@JsonBackReference
     @JsonIgnore
     private List<Post> postList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "utente")
+    @OneToMany(mappedBy = "utente", cascade = CascadeType.ALL)
     //@JsonBackReference
     @JsonIgnore
     private List<Risposta> rispostaList = new ArrayList<>();

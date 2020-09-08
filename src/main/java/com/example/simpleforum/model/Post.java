@@ -40,7 +40,7 @@ public class Post {
     //@JsonManagedReference
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)
     //@JsonBackReference
     @JsonIgnore
     private List<Risposta> rispostaList = new ArrayList<>();
