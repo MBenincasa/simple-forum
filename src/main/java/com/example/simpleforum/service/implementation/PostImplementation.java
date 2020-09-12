@@ -42,6 +42,12 @@ public class PostImplementation implements PostInterface {
     }
 
     @Override
+    public List<Post> findByCategoria(Categoria categoria) {
+        log.info("INFO - Sono stati stampati tutti i post della categoria: " + categoria.getTitolo());
+        return postRepo.findByCategoria(categoria);
+    }
+
+    @Override
     public Optional<Post> findPostById(int id) {
         if (!postRepo.findById(id).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Errore nella richiesta del post id: " + id);

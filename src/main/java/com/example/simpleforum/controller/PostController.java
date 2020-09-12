@@ -1,5 +1,6 @@
 package com.example.simpleforum.controller;
 
+import com.example.simpleforum.model.Categoria;
 import com.example.simpleforum.model.Post;
 import com.example.simpleforum.service.interfaces.PostInterface;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,11 @@ public class PostController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Post>> stampaTuttiPost() {
         return ResponseEntity.ok(postInterface.findAllPosts());
+    }
+
+    @PostMapping("/getByCat")
+    public ResponseEntity<List<Post>> stampaTuttiPostCategoria(@RequestBody Categoria categoria){
+        return ResponseEntity.ok(postInterface.findByCategoria(categoria));
     }
 
     @GetMapping("/get-{id}")

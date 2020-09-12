@@ -1,5 +1,6 @@
 package com.example.simpleforum.service.interfaces;
 
+import com.example.simpleforum.model.Categoria;
 import com.example.simpleforum.model.Post;
 
 import java.util.List;
@@ -9,6 +10,8 @@ public interface PostInterface {
     Post creaPost(Post post);
 
     List<Post> findAllPosts();
+
+    List<Post> findByCategoria(Categoria categoria);
 
     Optional<Post> findPostById(int id);
 
