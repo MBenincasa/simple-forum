@@ -97,7 +97,7 @@ public class UtenteImplementation implements UtenteInterface {
 
     private boolean checkCredential(Utente utente, boolean isReg) {
         String regex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$";
-
+        log.info("checkCredential DEBUG => " + utente.toString());
         if (null == utente.getPassword() || utente.getPassword().isEmpty()) {
             return false;
         }

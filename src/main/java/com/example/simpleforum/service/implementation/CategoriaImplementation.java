@@ -65,6 +65,7 @@ public class CategoriaImplementation implements CategoriaInterface {
     }
 
     private boolean checkDataCat(Categoria categoria) {
+        log.info("checkCredential DEBUG => " + categoria.toString());
         return null != categoria.getTitolo() && !categoria.getTitolo().isEmpty();
     }
 }

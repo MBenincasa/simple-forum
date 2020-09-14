@@ -82,6 +82,7 @@ public class PostImplementation implements PostInterface {
     }
 
     private boolean checkDataPost(Post post) {
+        log.info("checkCredential DEBUG => " + post.toString());
         if (null == post.getTitolo() || post.getTitolo().isEmpty() || null == post.getTesto() || post.getTesto().isEmpty() || null == post.getData() || post.getData().toString().isEmpty()) {
             return false;
         }

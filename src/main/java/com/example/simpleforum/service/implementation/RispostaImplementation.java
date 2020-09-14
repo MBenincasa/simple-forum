@@ -74,6 +74,7 @@ public class RispostaImplementation implements RispostaInterface {
     }
 
     private boolean checkRispostaData(Risposta risposta) {
+        log.info("checkCredential DEBUG => " + risposta.toString());
         if (null == risposta.getTesto() || risposta.getTesto().isEmpty()) {
             return false;
         }
