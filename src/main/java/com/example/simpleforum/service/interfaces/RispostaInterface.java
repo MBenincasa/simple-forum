@@ -1,5 +1,6 @@
 package com.example.simpleforum.service.interfaces;
 
+import com.example.simpleforum.model.Post;
 import com.example.simpleforum.model.Risposta;
 
 import java.util.List;
@@ -15,4 +16,6 @@ public interface RispostaInterface {
     Risposta updateAnswer(Risposta risposta);
 
     void deleteAnswer(int id);
+
+    List<Risposta> findByPost(Post post);
 }

@@ -1,5 +1,6 @@
 package com.example.simpleforum.controller;
 
+import com.example.simpleforum.model.Post;
 import com.example.simpleforum.model.Risposta;
 import com.example.simpleforum.service.interfaces.RispostaInterface;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,11 @@ public class RispostaController {
     @GetMapping("/getAll")
     public ResponseEntity<List<Risposta>> stampaTutteRisposte() {
         return ResponseEntity.ok(rispostaInterface.findAllAnswer());
+    }
+
+    @PostMapping("/getByPost")
+    public ResponseEntity<List<Risposta>> stampaTutteRispostePost(@RequestBody Post post) {
+        return ResponseEntity.ok(rispostaInterface.findByPost(post));
     }
 
     @GetMapping("/get-{id}")

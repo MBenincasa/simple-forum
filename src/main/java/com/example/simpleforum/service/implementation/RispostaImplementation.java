@@ -73,6 +73,12 @@ public class RispostaImplementation implements RispostaInterface {
         rispostaRepo.deleteById(id);
     }
 
+    @Override
+    public List<Risposta> findByPost(Post post) {
+        log.info("INFO - Sono state stampate tutte le risposte del post id: " + post.getId());
+        return rispostaRepo.findByPost(post);
+    }
+
     private boolean checkRispostaData(Risposta risposta) {
         log.info("checkCredential DEBUG => " + risposta.toString());
         if (null == risposta.getTesto() || risposta.getTesto().isEmpty()) {
