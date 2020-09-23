@@ -2,6 +2,7 @@ package com.example.simpleforum.controller;
 
 import com.example.simpleforum.model.Categoria;
 import com.example.simpleforum.model.Post;
+import com.example.simpleforum.model.Utente;
 import com.example.simpleforum.service.interfaces.PostInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,11 @@ public class PostController {
     @PostMapping("/getByCat")
     public ResponseEntity<List<Post>> stampaTuttiPostCategoria(@RequestBody Categoria categoria){
         return ResponseEntity.ok(postInterface.findByCategoria(categoria));
+    }
+
+    @PostMapping("/getByUser")
+    public  ResponseEntity<List<Post>> stampaTuttiPostUtente(@RequestBody Utente utente){
+        return ResponseEntity.ok(postInterface.findByUtente(utente));
     }
 
     @GetMapping("/get-{id}")

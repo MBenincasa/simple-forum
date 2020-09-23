@@ -79,6 +79,12 @@ public class RispostaImplementation implements RispostaInterface {
         return rispostaRepo.findByPost(post);
     }
 
+    @Override
+    public List<Risposta> findByUtente(Utente utente) {
+        log.info("INFO - Sono state stampate tutte le risposte dell'utente: " + utente.getEmail());
+        return rispostaRepo.findByUtente(utente);
+    }
+
     private boolean checkRispostaData(Risposta risposta) {
         log.info("checkCredential DEBUG => " + risposta.toString());
         if (null == risposta.getTesto() || risposta.getTesto().isEmpty()) {
